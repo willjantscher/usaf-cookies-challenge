@@ -1,20 +1,40 @@
+//npm init
+//npm install
+//npm install cookie-parser
+//npm install express
+
+//to run
+    //nodemon app.js
+
+//setup
+//--------------------------------------------------------------------------------------------
+const express = require('express')
 var cookieParser = require('cookie-parser')
 
-app.use(cookieParser())
+const app = express()
+const port = 3009
 
-app.get('/', function(req, res) {
-  console.log('Cookies: ', req.cookies)
+app.use(cookieParser())
+//--------------------------------------------------------------------------------------------
+
+
+
+app.get('/login', (req, res) => {
+        //set parameters for the cookies
+        var opts = {
+            maxAge: 900000,
+            httpOnly: true
+        };
+        res.cookie('firstName','General', opts);
+        res.cookie('lastName','Kenobi', opts);
+        res.end();
 })
 
-app.get('/', function(req, res) {
-    var opts = {
-      maxAge: 900000,
-      httpOnly: true
-    };
-    res.cookie('some_name', 'some_value', opts);
-    res.end();
-  })
-  
-  res.cookie('some_json', { foo: 'bar', bazz: 'buzz'});
+app.get('/hello', (req, res) => {
+    console.log('cookies: ', req.cookies)
+    res.send('Hello there! ... ' + req.cookies.firstName + ' ' + req.cookies.lastName)
+})
 
-  res.clearCookie('name', { path: '/somepath' });
+
+
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
