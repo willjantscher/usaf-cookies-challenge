@@ -21,7 +21,6 @@ app.use(cookieParser())
 
 
 // create a route to /login with their name and set a cookie
-
 app.post('/login', (req, res) => {
     //send over user data in body of request
     let user = req.body;
@@ -58,10 +57,6 @@ app.get('/hello', (req, res) => {
 })
 // GET http://localhost:3009/hello
 
-
-
-
-
 //hard coded setting of cookies
 // app.get('/login', (req, res) => {
 //         //set parameters for the cookies
@@ -77,7 +72,5 @@ app.get('/hello', (req, res) => {
 //     console.log('cookies: ', req.cookies)
 //     res.send('Hello there! ... ' + req.cookies.firstName + ' ' + req.cookies.lastName)
 // })
-
-
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
